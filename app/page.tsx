@@ -162,7 +162,7 @@ export default function HomePage() {
             <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] [background-size:38px_38px]" />
           </div>
 
-          <div className="relative grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+          <div className="relative grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
             <div className="space-y-6">
               <div
                 className="inline-flex rounded-full px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.22em]"
@@ -176,10 +176,10 @@ export default function HomePage() {
               </div>
 
               <div className="max-w-3xl">
-                <h1 className="text-4xl font-black leading-[0.98] tracking-[-0.06em] text-[var(--foreground)] sm:text-5xl lg:text-7xl">
+                <h1 className="max-w-[15ch] text-[2.35rem] font-black leading-[1] tracking-[-0.055em] text-[var(--foreground)] sm:text-[2.85rem] lg:text-[3.45rem]">
                   {content.hero.title}
                 </h1>
-                <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--foreground-muted)] sm:text-lg">
+                <p className="mt-4 max-w-xl text-[15px] leading-7 text-[var(--foreground-muted)] sm:text-base">
                   {content.hero.body}
                 </p>
               </div>
@@ -187,13 +187,13 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/#games"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[var(--primary)] px-6 text-sm font-black text-[var(--primary-ink)] transition-all duration-300 hover:-translate-y-[1px]"
+                  className="inline-flex min-h-[46px] items-center justify-center rounded-full bg-[var(--primary)] px-5 text-sm font-black text-[var(--primary-ink)] transition-all duration-300 hover:-translate-y-[1px]"
                 >
                   {content.hero.primaryCta}
                 </Link>
                 <Link
                   href="/#offers"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/12 bg-white/[0.05] px-6 text-sm font-bold text-[var(--foreground)] transition-all duration-300 hover:-translate-y-[1px] hover:bg-white/[0.09]"
+                  className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-white/12 bg-white/[0.05] px-5 text-sm font-bold text-[var(--foreground)] transition-all duration-300 hover:-translate-y-[1px] hover:bg-white/[0.09]"
                 >
                   {content.hero.secondaryCta}
                 </Link>
@@ -217,60 +217,42 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
-              <article className="relative min-h-[420px] overflow-hidden rounded-[28px] border border-white/10 bg-black/20 shadow-[0_18px_48px_rgba(0,0,0,0.22)]">
-                <SmartMedia
-                  src={content.hero.spotlight.image}
-                  alt={content.hero.spotlight.title}
-                  eyebrow={content.hero.spotlight.eyebrow}
-                  title={content.hero.spotlight.title}
-                  className="absolute inset-0"
-                  preload
-                />
-                <div className="absolute left-4 top-4 rounded-full border border-[var(--border-strong)] bg-[rgba(7,11,10,0.72)] px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-[var(--primary-strong)] backdrop-blur">
+            <aside className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5 shadow-[0_18px_48px_rgba(0,0,0,0.22)]">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[var(--primary-strong)]">
+                  {content.hero.spotlight.eyebrow}
+                </p>
+                <span className="rounded-full border border-[var(--border-strong)] bg-[var(--primary-soft)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--primary-strong)]">
                   {content.hero.spotlight.metric}
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--primary-strong)]">
-                    {content.hero.spotlight.eyebrow}
-                  </p>
-                  <h2 className="mt-3 text-2xl font-black leading-tight text-[var(--foreground)]">
-                    {content.hero.spotlight.title}
-                  </h2>
-                  <p className="mt-3 max-w-md text-sm leading-6 text-[var(--foreground-muted)]">
-                    {content.hero.spotlight.body}
-                  </p>
-                </div>
-              </article>
+                </span>
+              </div>
 
-              <div className="grid gap-4">
+              <h2 className="mt-4 max-w-[18ch] text-[1.55rem] font-black leading-[1.02] tracking-[-0.04em] text-[var(--foreground)] sm:text-[1.8rem]">
+                {content.hero.spotlight.title}
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-[var(--foreground-muted)]">
+                {content.hero.spotlight.body}
+              </p>
+
+              <div className="mt-5 grid gap-3">
                 {content.hero.stack.map((item) => (
-                  <article
+                  <div
                     key={item.title}
-                    className="relative min-h-[202px] overflow-hidden rounded-[24px] border border-white/10 bg-black/20 shadow-[0_18px_48px_rgba(0,0,0,0.22)]"
+                    className="rounded-[22px] border border-white/8 bg-black/15 px-4 py-4"
                   >
-                    <SmartMedia
-                      src={item.image}
-                      alt={item.title}
-                      eyebrow={item.eyebrow}
-                      title={item.title}
-                      className="absolute inset-0"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-4">
-                      <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--primary-strong)]">
-                        {item.eyebrow}
-                      </p>
-                      <h3 className="mt-2 text-lg font-black text-[var(--foreground)]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-6 text-[var(--foreground-muted)]">
-                        {item.body}
-                      </p>
-                    </div>
-                  </article>
+                    <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--primary-strong)]">
+                      {item.eyebrow}
+                    </p>
+                    <h3 className="mt-2 text-base font-black leading-tight text-[var(--foreground)] sm:text-lg">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-[var(--foreground-muted)]">
+                      {item.body}
+                    </p>
+                  </div>
                 ))}
               </div>
-            </div>
+            </aside>
           </div>
         </div>
       </section>
