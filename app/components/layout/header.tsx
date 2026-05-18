@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatedMarketLogo } from "../../../../designPlayGround/components/logo";
+import { AnimatedMarketLogo } from "@/app/components/logo";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { getSaudiHomeContent } from "@/lib/player-home";
 
@@ -16,13 +16,23 @@ export default function Header() {
   const home = getSaudiHomeContent(language);
   const direction = isArabic ? "rtl" : "ltr";
 
-  const navItems = [
+  const homeNavItems = [
     { href: "/", label: t.nav.home, active: pathname === "/" },
     { href: "/#games", label: home.nav.games, active: false },
     { href: "/#sports", label: home.nav.sports, active: false },
     { href: "/#offers", label: home.nav.offers, active: false },
     { href: "/#support", label: home.nav.support, active: false },
   ];
+
+  const partnershipNavItems = [
+    { href: "/partnership#products", label: t.partnership.products.eyebrow, active: false },
+    { href: "/partnership#offers", label: t.partnership.offer.eyebrow, active: false },
+    { href: "/partnership#models", label: t.partnership.models.eyebrow, active: false },
+    { href: "/partnership#tools", label: t.partnership.tools.eyebrow, active: false },
+    { href: "/partnership#join", label: t.finalCta.eyebrow, active: false },
+  ];
+
+  const navItems = pathname === "/partnership" ? partnershipNavItems : homeNavItems;
 
   const actionLink =
     pathname === "/partnership"

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { AnimatedMarketLogo } from "../../../../designPlayGround/components/logo";
+import { usePathname } from "next/navigation";
+import { AnimatedMarketLogo } from "@/app/components/logo";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import { getSaudiHomeContent } from "@/lib/player-home";
 
@@ -11,6 +12,7 @@ const supportLinks = [
 ] as const;
 
 export default function Footer() {
+  const pathname = usePathname() ?? "/";
   const { t, language, isArabic } = useLanguage();
   const home = getSaudiHomeContent(language);
   const direction = isArabic ? "rtl" : "ltr";
@@ -28,6 +30,18 @@ export default function Footer() {
     { href: "/faq", label: t.nav.faq },
   ];
 
+  const partnershipLinks = [
+    { href: "/partnership#products", label: t.partnership.products.eyebrow },
+    { href: "/partnership#offers", label: t.partnership.offer.eyebrow },
+    { href: "/partnership#models", label: t.partnership.models.eyebrow },
+    { href: "/partnership#tools", label: t.partnership.tools.eyebrow },
+    { href: "/partnership#join", label: t.finalCta.eyebrow },
+  ];
+
+  const sectionLinks = pathname === "/partnership" ? partnershipLinks : homeLinks;
+  const sectionHeading = pathname === "/partnership" ? t.nav.partnership : home.footer.homeLabel;
+  const description = pathname === "/partnership" ? t.footer.description : home.footer.body;
+
   return (
     <footer dir={direction} className="relative mt-8 pb-8 pt-6 sm:pb-10">
       <div className="container-main">
@@ -42,16 +56,16 @@ export default function Footer() {
                 <AnimatedMarketLogo ariaLabel="MELBET Saudi Arabia" preset="footer" wrapperClassName="inline-flex" />
               </Link>
               <p className="max-w-[32rem] text-sm leading-6 text-[var(--foreground-muted)] sm:text-[15px]">
-                {home.footer.body}
+                {description}
               </p>
             </div>
 
             <div className="space-y-4">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[var(--primary-strong)]">
-                {home.footer.homeLabel}
+                {sectionHeading}
               </p>
               <div className="flex flex-col gap-3">
-                {homeLinks.map((item) => (
+                {sectionLinks.map((item) => (
                   <Link key={item.href} href={item.href} className="footer-link text-sm text-[var(--foreground-muted)]">
                     {item.label}
                   </Link>
@@ -61,7 +75,7 @@ export default function Footer() {
 
             <div className="space-y-4">
               <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[var(--primary-strong)]">
-                {home.footer.marketLabel}
+                {t.footer.navigation}
               </p>
               <div className="flex flex-col gap-3">
                 {marketLinks.map((item) => (

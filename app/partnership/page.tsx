@@ -7,7 +7,7 @@ import FinalCTA from "@/app/components/partnership/FinalCTA";
 
 export default function PartnershipPage() {
   return (
-    <main>
+    <main className="partnership-main">
       <Hero />
       <Products />
       <Offers />

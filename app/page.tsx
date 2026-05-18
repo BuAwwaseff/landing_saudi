@@ -14,11 +14,13 @@ function SectionHeading({
   title,
   body,
   actions,
+  titleClassName,
 }: {
   eyebrow: string;
   title: string;
   body: string;
   actions?: ReactNode;
+  titleClassName?: string;
 }) {
   return (
     <div className="flex flex-col gap-4">
@@ -35,7 +37,14 @@ function SectionHeading({
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <h2 className="text-3xl font-black leading-[1] tracking-[-0.05em] text-[var(--foreground)] sm:text-4xl lg:text-5xl">
+          <h2
+            className={[
+              "text-3xl font-black leading-[1] tracking-[-0.05em] text-[var(--foreground)] sm:text-4xl lg:text-5xl",
+              titleClassName,
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
             {title}
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--foreground-muted)] sm:text-lg">
@@ -394,6 +403,7 @@ export default function HomePage() {
             eyebrow={content.offers.eyebrow}
             title={content.offers.title}
             body={content.offers.body}
+            titleClassName="text-[2rem] sm:text-[2.35rem] lg:text-[2.75rem]"
           />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">

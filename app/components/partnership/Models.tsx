@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
+import SectionHeading from "@/app/components/partnership/SectionHeading";
+import SectionSurface from "@/app/components/partnership/SectionSurface";
 import { useLanguage } from "@/app/providers/LanguageContext";
 import TabletMockup from "@/app/ui/TabletMockup";
 
@@ -338,78 +340,64 @@ export default function Models() {
     <section
       id="models"
       dir={isArabic ? "rtl" : "ltr"}
-      className="container-main py-14 sm:py-16 lg:py-20"
+      className="container-main py-6 sm:py-7 lg:py-8"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true, amount: 0.25 }}
-        className="mx-auto max-w-4xl text-center"
-      >
-        <p
-          className="text-[11px] font-extrabold uppercase tracking-[0.24em]"
-          style={{ color: "var(--foreground-soft)" }}
+      <SectionSurface>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.25 }}
         >
-          {t.partnership.models.eyebrow}
-        </p>
-
-        <h2
-          className="mt-3 text-3xl font-black leading-[0.96] tracking-[-0.05em] sm:text-4xl lg:text-[3.2rem]"
-          style={{ color: "var(--foreground)" }}
-        >
-          {t.partnership.models.title}
-        </h2>
-
-        <p
-          className="mx-auto mt-5 max-w-3xl text-sm leading-7 sm:text-base"
-          style={{ color: "var(--foreground-muted)" }}
-        >
-          {activeScenario.summary}
-        </p>
-
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          {activeScenario.markers.map((marker) => (
-            <span
-              key={marker}
-              className="rounded-full px-3 py-1.5 text-xs font-semibold"
-              style={{
-                border: "1px solid var(--border)",
-                background: "var(--surface-strong)",
-                color: "var(--foreground-muted)",
-              }}
-            >
-              {marker}
-            </span>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 22, scale: 0.985 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="mt-10 flex justify-center"
-      >
-        <div className="flex h-[390px] w-full items-center justify-center overflow-hidden sm:h-[500px] md:h-[590px] lg:h-[680px]">
-          <TabletMockup
-            interactive={false}
-            className="origin-center scale-[0.56] sm:scale-[0.72] md:scale-[0.86] lg:scale-100"
+          <SectionHeading
+            eyebrow={t.partnership.models.eyebrow}
+            title={t.partnership.models.title}
+            body={activeScenario.summary}
+            align="center"
           >
-            <div
-              className={`${ui.shellPad} h-full w-full`}
-              style={{ color: "var(--foreground)" }}
+            <div className="mt-1 flex flex-wrap justify-center gap-3">
+              {activeScenario.markers.map((marker) => (
+                <span
+                  key={marker}
+                  className="rounded-full px-3 py-1.5 text-xs font-semibold"
+                  style={{
+                    border: "1px solid var(--border)",
+                    background: "var(--surface-strong)",
+                    color: "var(--foreground-muted)",
+                  }}
+                >
+                  {marker}
+                </span>
+              ))}
+            </div>
+          </SectionHeading>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 22, scale: 0.985 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-8"
+        >
+          <div className="partner-stage-frame flex h-[390px] w-full items-center justify-center sm:h-[500px] md:h-[590px] lg:h-[680px]">
+            <TabletMockup
+              interactive={false}
+              className="origin-center scale-[0.56] sm:scale-[0.72] md:scale-[0.86] lg:scale-100"
             >
               <div
-                className="flex h-full flex-col overflow-hidden rounded-[24px]"
-                style={{
-                  border: "1px solid var(--border)",
-                  background:
-                    "linear-gradient(180deg, rgba(11,18,16,0.94) 0%, rgba(17,27,23,0.96) 100%)",
-                  boxShadow: "var(--shadow-medium)",
-                }}
+                className={`${ui.shellPad} h-full w-full`}
+                style={{ color: "var(--foreground)" }}
               >
+                <div
+                  className="flex h-full flex-col overflow-hidden rounded-[24px]"
+                  style={{
+                    border: "1px solid var(--border)",
+                    background:
+                      "linear-gradient(180deg, rgba(11,18,16,0.94) 0%, rgba(17,27,23,0.96) 100%)",
+                    boxShadow: "var(--shadow-medium)",
+                  }}
+                >
                 <div
                   className="border-b px-[clamp(0.875rem,1vw,1rem)] py-[clamp(0.75rem,1vw,0.875rem)]"
                   style={{
@@ -777,9 +765,10 @@ export default function Models() {
                 </AnimatePresence>
               </div>
             </div>
-          </TabletMockup>
-        </div>
-      </motion.div>
+            </TabletMockup>
+          </div>
+        </motion.div>
+      </SectionSurface>
     </section>
   );
 }
